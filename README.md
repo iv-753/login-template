@@ -98,27 +98,35 @@ npm run dev
 ## 项目结构
 
 ```
-src/
-├── app/                    # Next.js App Router 页面
-│   ├── auth/
-│   │   └── callback/       # OAuth 回调处理
-│   ├── dashboard/          # 受保护的仪表板页面
-│   ├── login/              # 登录页面
-│   ├── globals.css         # 全局样式
-│   ├── layout.tsx          # 根布局
-│   └── page.tsx            # 首页
-├── components/
-│   ├── auth/               # 认证相关组件
-│   │   ├── LoginButton.tsx # 登录按钮
-│   │   └── UserProfile.tsx # 用户信息组件
-│   └── ui/                 # 基础 UI 组件
-│       └── button.tsx      # 按钮组件
-└── lib/                    # 工具库
-    ├── auth.ts             # 认证工具函数
-    ├── supabase.ts         # Supabase 客户端
-    ├── supabase-server.ts  # 服务端 Supabase 客户端
-    ├── supabase-middleware.ts # 中间件 Supabase 客户端
-    └── utils.ts            # 通用工具函数
+├── config/                 # 配置系统
+│   ├── site.ts            # 网站配置
+│   ├── types.ts           # 类型定义
+│   ├── validate.ts        # 配置验证
+│   └── index.ts           # 配置入口
+├── src/
+│   ├── app/               # Next.js App Router 页面
+│   │   ├── auth/
+│   │   │   └── callback/  # OAuth 回调处理
+│   │   ├── dashboard/     # 受保护的仪表板页面
+│   │   ├── login/         # 登录页面
+│   │   ├── globals.css    # 全局样式
+│   │   ├── layout.tsx     # 根布局
+│   │   └── page.tsx       # 首页
+│   ├── components/
+│   │   ├── auth/          # 认证相关组件
+│   │   │   ├── LoginButton.tsx # 登录按钮
+│   │   │   └── UserProfile.tsx # 用户信息组件
+│   │   └── ui/            # 基础 UI 组件
+│   │       └── button.tsx # 按钮组件
+│   └── lib/               # 工具库
+│       ├── auth.ts        # 认证工具函数
+│       ├── supabase.ts    # Supabase 客户端
+│       ├── supabase-server.ts # 服务端 Supabase 客户端
+│       ├── supabase-middleware.ts # 中间件 Supabase 客户端
+│       └── utils.ts       # 通用工具函数
+├── middleware.ts          # Next.js 中间件
+├── tailwind.config.ts     # Tailwind CSS 配置
+└── package.json           # 项目依赖
 ```
 
 ## 部署
@@ -136,21 +144,78 @@ src/
 
 ## 自定义
 
+### 网站配置
+
+项目使用集中配置系统，所有网站相关的配置都在 `config/site.ts` 文件中：
+
+```typescript
+// config/site.ts
+export const siteConfig = {
+  // 基本信息
+  name: "登录模板",
+  description: "一个简单的 Next.js + Supabase 登录模板",
+  url: "http://localhost:3000",
+  
+  // 主题配置
+  theme: {
+    primary: "blue",
+    accent: "gray",
+    mode: "light", // light | dark | system
+  },
+  
+  // OAuth 配置
+  oauth: {
+    providers: ["github", "google"],
+    redirectPath: "/auth/callback",
+  },
+  
+  // 路由配置
+  routes: {
+    login: "/login",
+    dashboard: "/dashboard",
+    home: "/",
+  },
+  
+  // UI 文本配置
+  ui: {
+    login: {
+      title: "登录到您的账户",
+      subtitle: "选择以下方式登录",
+      // ... 更多配置
+    },
+    // ... 更多配置
+  },
+}
+```
+
+### 快速定制
+
+1. **修改网站信息**：编辑 `config/site.ts` 中的基本信息
+2. **修改主题**：调整 `theme` 配置
+3. **修改文本**：更新 `ui` 配置中的文本内容
+4. **修改路由**：调整 `routes` 配置
+
 ### 添加新的 OAuth 提供商
 
-1. 在 `src/lib/auth.ts` 中添加新的登录函数
-2. 在 `src/components/auth/LoginButton.tsx` 中添加新的提供商选项
-3. 在 Supabase 中配置新的提供商
+1. 在 `config/site.ts` 的 `oauth.providers` 中添加新的提供商
+2. 在 `src/lib/auth.ts` 中添加新的登录函数
+3. 在 `src/components/auth/LoginButton.tsx` 中添加新的提供商选项
+4. 在 Supabase 中配置新的提供商
 
 ### 修改样式
 
-项目使用 Tailwind CSS，可以通过修改 `src/app/globals.css` 和组件类名来自定义样式。
+项目使用 Tailwind CSS + CSS 变量系统：
+
+1. **主题色**：修改 `config/site.ts` 中的 `theme` 配置
+2. **CSS 变量**：编辑 `src/app/globals.css` 中的 CSS 变量
+3. **组件样式**：直接修改组件的 Tailwind 类名
 
 ### 添加新页面
 
 1. 在 `src/app/` 下创建新的页面目录
 2. 使用 `createClient` 获取用户信息进行权限控制
 3. 页面会自动受到中间件保护
+4. 使用 `siteConfig.routes` 中的路由配置
 
 ## 常见问题
 
