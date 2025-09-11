@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode  // 告诉TypeScript children是React组件
 }) {
   return (
-    <html lang={siteConfig.language}>  {/* 设置网页语言 */}
-      <body className="font-sans">     {/* 设置字体样式 */}
-        {children}                      {/* 显示页面内容 */}
+    <html lang={siteConfig.language}>
+      <body className="font-sans">
+        {children}
       </body>
     </html>
   )

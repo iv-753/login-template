@@ -50,8 +50,49 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      // 添加CSS兼容性支持
+      screens: {
+        // 确保响应式断点兼容性
+        'xs': '475px',
+      },
+      // 添加更好的字体渲染支持
+      fontFamily: {
+        sans: [
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          '"Noto Sans"',
+          'sans-serif',
+        ],
+      },
     },
   },
   plugins: [],
+  // 添加CSS兼容性配置
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  // 启用Autoprefixer支持
+  corePlugins: {
+    // 确保所有核心插件都启用，包括兼容性相关的
+    backdropBlur: true,
+    backdropBrightness: true,
+    backdropContrast: true,
+    backdropGrayscale: true,
+    backdropHueRotate: true,
+    backdropInvert: true,
+    backdropOpacity: true,
+    backdropSaturate: true,
+    backdropSepia: true,
+    // 启用更多兼容性相关的插件
+    userSelect: true,
+    appearance: true,
+    backgroundClip: true,
+    // 注意：某些插件在Tailwind中可能不存在，我们通过CSS覆盖来处理
+  },
 }
 export default config

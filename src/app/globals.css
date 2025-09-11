@@ -66,3 +66,193 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* CSS兼容性修复 - 全局样式覆盖 */
+@layer base {
+  /* 修复全局文本大小调整兼容性 */
+  html, :host {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* 修复全局用户选择兼容性 */
+  * {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
+  
+  /* 修复全局touch-action兼容性 */
+  a, area, button, input, label, select, summary, textarea, [tabindex] {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+}
+
+/* CSS兼容性修复 - 工具类 */
+@layer utilities {
+  /* 修复touch-action兼容性 */
+  .touch-none {
+    -ms-touch-action: none;
+    touch-action: none;
+  }
+  
+  .touch-pan-x {
+    -ms-touch-action: pan-x;
+    touch-action: pan-x;
+  }
+  
+  .touch-pan-y {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+  }
+  
+  .touch-manipulation {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+
+  /* 修复text-size-adjust兼容性 */
+  .text-size-adjust-none {
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+  
+  .text-size-adjust-auto {
+    -webkit-text-size-adjust: auto;
+    -moz-text-size-adjust: auto;
+    text-size-adjust: auto;
+  }
+
+  /* 修复backdrop-filter兼容性 - 覆盖Tailwind默认类 */
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+  
+  .backdrop-blur-lg {
+    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  /* 修复mask-image兼容性 */
+  .mask-none {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* 修复user-select兼容性 - 覆盖Tailwind默认类 */
+  .select-none {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+  }
+  
+  .select-text {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+  }
+  
+  .select-all {
+    -webkit-user-select: all !important;
+    -moz-user-select: all !important;
+    -ms-user-select: all !important;
+    user-select: all !important;
+  }
+
+  /* 修复appearance兼容性 - 覆盖Tailwind默认类 */
+  .appearance-none {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* 修复background-clip兼容性 - 覆盖Tailwind默认类 */
+  .bg-clip-text {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+  
+  .bg-clip-border {
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+  }
+  
+  .bg-clip-padding {
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+  }
+  
+  .bg-clip-content {
+    -webkit-background-clip: content-box !important;
+    background-clip: content-box !important;
+  }
+
+  /* 修复user-drag兼容性 */
+  .drag-none {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+  
+  .drag-auto {
+    -webkit-user-drag: auto;
+    user-drag: auto;
+  }
+}
+
+/* CSS兼容性修复 - 第三方CSS覆盖 */
+@layer base {
+  /* 修复Next.js内部CSS的兼容性问题 */
+  [data-nextjs-dialog-backdrop] {
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  [data-nextjs-container-errors-pseudo-html-collapse='true'].nextjs__container_errors__component-stack code {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 10%) !important;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 10%) !important;
+  }
+  
+  [data-nextjs-call-stack-frame] {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+  }
+  
+  button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  .nextjs-container-build-error-version-status > .turbopack-text {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+  }
+  
+  .immersive-translate-link {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+  
+  :where(#mount) {
+    -webkit-text-size-adjust: 100% !important;
+    -moz-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+  }
+}

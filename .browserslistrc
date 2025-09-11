@@ -1,0 +1,27 @@
+# 浏览器兼容性配置
+# 支持最新的2个版本
+last 2 versions
+
+# 市场份额大于1%的浏览器
+> 1%
+
+# 不包括已经停止支持的浏览器
+not dead
+
+# 支持iOS Safari
+iOS >= 7
+
+# 支持Android浏览器
+Android >= 4.4
+
+# 支持Chrome
+Chrome >= 54
+
+# 支持Firefox
+Firefox >= 52
+
+# 支持Safari
+Safari >= 13
+
+# 支持Edge
+Edge >= 79
