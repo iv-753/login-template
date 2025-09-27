@@ -42,14 +42,14 @@ npm install
 #### GitHub OAuth
 1. 访问 GitHub Settings > Developer settings > OAuth Apps
 2. 创建新的 OAuth App
-3. 设置 Authorization callback URL: `http://localhost:3000/auth/callback`
+3. 设置 Authorization callback URL: `http://localhost:3000/dashboard`
 
 #### Google OAuth
 1. 访问 [Google Cloud Console](https://console.cloud.google.com)
 2. 创建新项目或选择现有项目
 3. 启用 Google+ API
 4. 创建 OAuth 2.0 客户端 ID
-5. 设置授权重定向 URI: `http://localhost:3000/auth/callback`
+5. 设置授权重定向 URI: `http://localhost:3000/dashboard`
 
 ### 4. 配置环境变量
 
@@ -83,7 +83,7 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 2. 启用 GitHub 和 Google 提供商
 3. 填入相应的 Client ID 和 Client Secret
 4. 设置 Site URL: `http://localhost:3000`
-5. 设置 Redirect URLs: `http://localhost:3000/auth/callback`
+5. 设置 Redirect URLs: `http://localhost:3000/dashboard`
 
 ### 6. 运行项目
 
@@ -105,8 +105,6 @@ npm run dev
 │   └── index.ts           # 配置入口
 ├── src/
 │   ├── app/               # Next.js App Router 页面
-│   │   ├── auth/
-│   │   │   └── callback/  # OAuth 回调处理
 │   │   ├── dashboard/     # 受保护的仪表板页面
 │   │   ├── login/         # 登录页面
 │   │   ├── globals.css    # 全局样式

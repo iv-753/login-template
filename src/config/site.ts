@@ -24,7 +24,7 @@ export const siteConfig = {
   // 登录方式设置（用户可以用什么账号登录）
   oauth: {
     providers: ["github", "google"] as const, // 支持的登录方式：GitHub和Google
-    redirectPath: "/auth/callback",            // 登录成功后跳转的页面
+    redirectPath: "/dashboard",                // 登录成功后跳转的页面
   },
   
   // 网站页面地址设置（就像门牌号）
